@@ -30,6 +30,9 @@ public class Employee {
     }
 
     public Employee(String name, Role role, LocalDate birthday, LocalDate workStartDate) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException(String.format("잘못된 name(%s)입니다. 다시 입력해주세요.", name));
+        }
         this.name = name;
         this.role = role;
         this.birthday = birthday;

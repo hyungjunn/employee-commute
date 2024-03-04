@@ -22,6 +22,9 @@ public class Team {
     }
 
     public Team(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException(String.format("잘못된 name(%s)입니다. 다시 입력해주세요.", name));
+        }
         this.name = name;
     }
 
