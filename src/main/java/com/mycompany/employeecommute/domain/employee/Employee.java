@@ -15,12 +15,25 @@ public class Employee {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
+    @Column(nullable = false)
     private String name;
     private String teamName;
-    @Column @Enumerated(EnumType.STRING)
+    @Column(nullable = false) @Enumerated(EnumType.STRING)
     private Role role;
     @Column(nullable = false)
     private LocalDate birthday;
+    @Column(nullable = false)
     private LocalDate workStartDate;
+
+    protected Employee() {
+
+    }
+
+    public Employee(String name, Role role, LocalDate birthday, LocalDate workStartDate) {
+        this.name = name;
+        this.role = role;
+        this.birthday = birthday;
+        this.workStartDate = workStartDate;
+    }
 
 }
