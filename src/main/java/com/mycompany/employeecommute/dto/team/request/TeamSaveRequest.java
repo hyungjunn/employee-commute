@@ -1,4 +1,4 @@
-package com.mycompany.employeecommute.dto.team;
+package com.mycompany.employeecommute.dto.team.request;
 
 public class TeamSaveRequest {
 

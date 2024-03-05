@@ -28,4 +28,21 @@ public class Team {
         this.name = name;
     }
 
+    public Team(String name, String manager, int member_Count) {
+        this.name = name;
+        this.manager = manager;
+        this.member_Count = member_Count;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getManager() {
+        return manager;
+    }
+
+    public int getMember_Count() {
+        return member_Count;
+    }
 }
