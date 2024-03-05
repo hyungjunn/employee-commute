@@ -23,6 +23,7 @@ public class TeamService {
         teamRepository.save(new Team(name));
     }
 
+    @Transactional
     public List<TeamResponse> getTeam() {
         return teamRepository.findAll().stream()
                 .map(TeamResponse::new)

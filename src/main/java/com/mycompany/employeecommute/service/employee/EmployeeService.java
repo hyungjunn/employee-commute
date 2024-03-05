@@ -30,6 +30,7 @@ public class EmployeeService {
         );
     }
 
+    @Transactional
     public List<EmployeeResponse> getEmployee() {
         return employeeRepository.findAll().stream()
                 .map(EmployeeResponse::new)
