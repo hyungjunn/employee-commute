@@ -10,6 +10,9 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
+import static com.mycompany.employeecommute.domain.employee.Role.MANAGER;
+import static com.mycompany.employeecommute.domain.employee.Role.MEMBER;
+
 @Entity
 public class Employee {
 
@@ -33,6 +36,11 @@ public class Employee {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException(String.format("잘못된 name(%s)입니다. 다시 입력해주세요.", name));
         }
+
+        if (MANAGER != role || MEMBER != role) {
+            throw new IllegalArgumentException(String.format("잘못된 role(%s)입니다. 다시 입력해주세요.", role));
+        }
+
         this.name = name;
         this.role = role;
         this.birthday = birthday;
