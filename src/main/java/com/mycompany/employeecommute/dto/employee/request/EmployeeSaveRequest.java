@@ -1,4 +1,4 @@
-package com.mycompany.employeecommute.dto.employee;
+package com.mycompany.employeecommute.dto.employee.request;
 
 import com.mycompany.employeecommute.domain.employee.Role;
 

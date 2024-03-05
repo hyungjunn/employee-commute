@@ -39,4 +39,23 @@ public class Employee {
         this.workStartDate = workStartDate;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public LocalDate getWorkStartDate() {
+        return workStartDate;
+    }
 }
