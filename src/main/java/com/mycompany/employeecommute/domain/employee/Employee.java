@@ -23,8 +23,8 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
 
-    @OneToMany(mappedBy = "employee",  cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<EmployeeWorkHistory> employeeWorkHistories = new ArrayList<>();
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private final List<EmployeeWorkHistory> employeeWorkHistories = new ArrayList<>();
 
     @Column(nullable = false)
     private String name;

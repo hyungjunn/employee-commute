@@ -10,7 +10,8 @@ import jakarta.persistence.Id;
 public class Team {
 
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
     @Column(nullable = false)
     private String name;

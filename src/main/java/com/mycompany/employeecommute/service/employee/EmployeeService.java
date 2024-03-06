@@ -28,10 +28,10 @@ public class EmployeeService {
     @Transactional
     public void saveEmployee(EmployeeSaveRequest request) {
         employeeRepository.save(new Employee(
-                request.getName(),
-                request.getRole(),
-                request.getWorkStartDate(),
-                request.getBirthday()
+                        request.getName(),
+                        request.getRole(),
+                        request.getWorkStartDate(),
+                        request.getBirthday()
                 )
         );
     }

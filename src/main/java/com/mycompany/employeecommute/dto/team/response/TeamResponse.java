@@ -4,9 +4,9 @@ import com.mycompany.employeecommute.domain.team.Team;
 
 public class TeamResponse {
 
-    private String name;
-    private String manager;
-    private int memberCount;
+    private final String name;
+    private final String manager;
+    private final int memberCount;
 
     public TeamResponse(Team team) {
         this.name = team.getName();
