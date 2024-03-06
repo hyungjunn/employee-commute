@@ -120,20 +120,20 @@
 ### 직원 출근 api
 
 - HTTP Method: POST
-- HTTP path: /employee/work
+- HTTP path: /commute/arrive
 - HTTP body (JSON)
 - 결과 반환 X (HTTP status 200 ok)
 
 ### 직원 퇴근 api
 
 - HTTP Method: PUT
-- HTTP path: /employee/work
+- HTTP path: /commute/leave
 - HTTP body (JSON)
 - 결과 반환 X (HTTP status 200 ok)
 
 ### 특정 직원의 날짜별 근무시간 조회 api
 
 - HTTP Method: GET
-- HTTP path: /employee/history/month
+- HTTP path: /commute/history/month
 - 쿼리: 직원 id, 연/월
 - 결과 반환 (JSON)
