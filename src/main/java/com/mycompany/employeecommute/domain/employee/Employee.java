@@ -1,5 +1,7 @@
 package com.mycompany.employeecommute.domain.employee;
 
+import com.mycompany.employeecommute.domain.employee.work_history.EmployeeWorkHistory;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -7,21 +9,35 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity // todo 연관관계 주도권갖고있다(ManyToOne)
 public class Employee {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
+
+    @OneToMany(mappedBy = "employee",  cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<EmployeeWorkHistory> employeeWorkHistories = new ArrayList<>();
+
     @Column(nullable = false)
     private String name;
+
     private String teamName;
-    @Column(nullable = false) @Enumerated(EnumType.STRING)
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
+
     @Column(nullable = false)
     private LocalDate birthday;
+
     @Column(nullable = false)
     private LocalDate workStartDate;
 
@@ -38,6 +54,10 @@ public class Employee {
         this.role = role;
         this.birthday = birthday;
         this.workStartDate = workStartDate;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -59,4 +79,9 @@ public class Employee {
     public LocalDate getWorkStartDate() {
         return workStartDate;
     }
+
+    public void hasWork() {
+        this.employeeWorkHistories.add(new EmployeeWorkHistory(this, true, LocalDateTime.now()));
+    }
+
 }

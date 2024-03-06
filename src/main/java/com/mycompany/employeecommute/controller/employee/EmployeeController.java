@@ -1,6 +1,7 @@
 package com.mycompany.employeecommute.controller.employee;
 
 import com.mycompany.employeecommute.dto.employee.request.EmployeeSaveRequest;
+import com.mycompany.employeecommute.dto.employee.request.EmployeeWorkHistoryRequest;
 import com.mycompany.employeecommute.dto.employee.response.EmployeeResponse;
 import com.mycompany.employeecommute.service.employee.EmployeeService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,4 +30,8 @@ public class EmployeeController {
         return employeeService.getEmployee();
     }
 
+    @PostMapping("/employee/work")
+    public void saveWorkHistory(@RequestBody EmployeeWorkHistoryRequest request) {
+        employeeService.saveWorkHistory(request);
+    }
 }
