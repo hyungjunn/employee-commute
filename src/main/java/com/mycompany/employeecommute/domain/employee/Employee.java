@@ -1,7 +1,5 @@
 package com.mycompany.employeecommute.domain.employee;
 
-import com.mycompany.employeecommute.domain.employee.work_history.EmployeeWorkHistory;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -9,12 +7,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity // todo 연관관계 주도권갖고있다(ManyToOne)
 public class Employee {
@@ -23,8 +17,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
 
-    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<EmployeeWorkHistory> employeeWorkHistories = new ArrayList<>();
+
 
     @Column(nullable = false)
     private String name;
@@ -78,10 +71,6 @@ public class Employee {
 
     public LocalDate getWorkStartDate() {
         return workStartDate;
-    }
-
-    public void hasWork() {
-        this.employeeWorkHistories.add(new EmployeeWorkHistory(this, true, LocalDateTime.now()));
     }
 
 }
