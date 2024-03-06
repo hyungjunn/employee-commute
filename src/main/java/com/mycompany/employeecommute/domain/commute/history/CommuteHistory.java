@@ -18,7 +18,7 @@ public class CommuteHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(nullable = false)
     private Employee employee;
     private LocalDate date;
     private LocalTime arrivingTime;
@@ -27,10 +27,14 @@ public class CommuteHistory {
     protected CommuteHistory() {
     }
 
-    public CommuteHistory(Employee employee, LocalDate date, LocalTime arrivingTime) {
+    public CommuteHistory(Employee employee) {
         this.employee = employee;
-        this.date = date;
-        this.arrivingTime = arrivingTime;
+        this.date = LocalDate.now();
+        this.arrivingTime = LocalTime.now();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public LocalTime getLeavingTime() {

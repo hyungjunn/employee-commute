@@ -12,10 +12,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // todo 연관관계 주도권갖고있다(ManyToOne)
+@Entity
 public class Employee {
 
     @Id
@@ -77,6 +78,11 @@ public class Employee {
 
     public LocalDate getWorkStartDate() {
         return workStartDate;
+    }
+
+    //todo: 이 연관관계를 통한 메서드가 왜 적용이 안되는지
+    public void arrive() {
+        this.commuteHistories.add(new CommuteHistory(this));
     }
 
 }
