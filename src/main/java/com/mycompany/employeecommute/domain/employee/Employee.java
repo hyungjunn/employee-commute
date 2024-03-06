@@ -10,10 +10,7 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
-import static com.mycompany.employeecommute.domain.employee.Role.MANAGER;
-import static com.mycompany.employeecommute.domain.employee.Role.MEMBER;
-
-@Entity
+@Entity // todo 연관관계 주도권갖고있다(ManyToOne)
 public class Employee {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

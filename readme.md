@@ -83,3 +83,57 @@
 - HTTP Path: /employee
 - 쿼리 없음
 - 결과 반환 JSON
+
+---
+
+## 프로젝트 2단계
+
+### 직원 출근 api
+- [ ] 직원의 출근을 직원의 `id`기준으로 처리
+
+### 직원 퇴근 api
+-[ ] 출근한 직원을 `id`를 기준으로 처리
+
+### 특정 직원의 날짜별 근무시간 조회 api
+- [ ] 특정 직원 `id`와 `2024-01`과 같이 연/월을 받으면, 날짜별 근무 시간과 총 합을 반환(근무 시간은 분단위로 계산)
+```
+{
+  "detail": [
+    {
+      "data": "2024-01-01",
+      "workingMinutes": 480
+    },
+    {
+      "date": "2024-01-02",
+      "workingMinutes": 490
+    },
+    ... // 2024년 1월 31일까지 존재할 수 있다.
+  ],
+  "sum": 10560
+}
+```
+
+---
+
+## API 설계
+
+### 직원 출근 api
+
+- HTTP Method: POST
+- HTTP path: /employee/work
+- HTTP body (JSON)
+- 결과 반환 X (HTTP status 200 ok)
+
+### 직원 퇴근 api
+
+- HTTP Method: PUT
+- HTTP path: /employee/work
+- HTTP body (JSON)
+- 결과 반환 X (HTTP status 200 ok)
+
+### 특정 직원의 날짜별 근무시간 조회 api
+
+- HTTP Method: GET
+- HTTP path: /employee/history/month
+- 쿼리: 직원 id, 연/월
+- 결과 반환 (JSON)
