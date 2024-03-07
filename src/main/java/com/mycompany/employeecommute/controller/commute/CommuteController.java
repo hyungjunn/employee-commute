@@ -19,11 +19,11 @@ public class CommuteController {
 
     @PostMapping("/commute/arrive")
     public void saveCommuteHistory(@RequestBody CommuteHistoryCreateRequest request) {
-        commuteService.saveCommuteHistory(request);
+        commuteService.saveCommuteHistory(request.getEmployeeId());
     }
 
     @PutMapping("/commute/leave")
     public void updateCommuteHistory(@RequestBody CommuteHistoryUpdateRequest request) {
-        commuteService.updateCommuteHistory(request);
+        commuteService.updateCommuteHistory(request.getEmployeeId());
     }
 }

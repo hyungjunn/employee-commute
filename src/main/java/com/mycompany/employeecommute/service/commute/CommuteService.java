@@ -24,12 +24,12 @@ public class CommuteService {
     }
 
     @Transactional
-    public void saveCommuteHistory(CommuteHistoryCreateRequest request) {
+    public void saveCommuteHistory(Long employeeId) {
         //1.직원정보를 가져온다
-        Employee employee = employeeRepository.findById(request.getEmployeeId())
+        Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(IllegalArgumentException::new);
-        //todo: 오늘날에 출근을 했다면 에러를 던진다
-        if (commuteHistoryRepository.existsByIdAndDate(employee.getId(), LocalDate.now())) {
+        //오늘날에 출근을 했다면 에러를 던진다
+        if (commuteHistoryRepository.existsByEmployeeAndDate(employee, LocalDate.now())) {
             throw new IllegalArgumentException(String.format("employee(%s)은(는) 이미 출근을 했습니다.", employee.getName()));
         }
         //2.직원정보를 토대로 출근 이력을 저장한다
@@ -38,9 +38,9 @@ public class CommuteService {
     }
 
     @Transactional
-    public void updateCommuteHistory(CommuteHistoryUpdateRequest request) {
+    public void updateCommuteHistory(Long employeeId) {
         //1.직원정보를 가져온다.
-        Employee employee = employeeRepository.findById(request.getEmployeeId())
+        Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(IllegalArgumentException::new);
 
         //2.직원 출근 이력을 가지고 온다
@@ -48,7 +48,7 @@ public class CommuteService {
                 .orElseThrow(IllegalArgumentException::new);
 
         //3.만약 퇴근 이력이 있다면 예외를 던진다
-        if (commuteHistory.getLeavingTime() != null) {
+        if (commuteHistory.leavingTime() != null) {
             throw new IllegalArgumentException("퇴근 상태입니다. 출근을 먼저 해주세요.");
         }
 

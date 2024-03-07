@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface CommuteHistoryRepository extends JpaRepository<CommuteHistory, Long> {
     Optional<CommuteHistory> findByEmployeeAndDate(Employee employee, LocalDate date);
-    boolean existsByIdAndDate(Long id, LocalDate date);
+    boolean existsByEmployeeAndDate(Employee employee, LocalDate date);
 
 }

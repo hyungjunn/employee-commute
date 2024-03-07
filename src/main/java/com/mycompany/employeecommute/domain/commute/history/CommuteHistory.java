@@ -37,7 +37,7 @@ public class CommuteHistory {
         return id;
     }
 
-    public LocalTime getLeavingTime() {
+    public LocalTime leavingTime() {
         return leavingTime;
     }
 
