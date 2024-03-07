@@ -1,4 +1,4 @@
-package com.mycompany.employeecommute.dto.vacation.request;
+package com.mycompany.employeecommute.dto.leave.annual.request;
 
 import java.time.LocalDate;
 

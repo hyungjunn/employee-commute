@@ -28,35 +28,30 @@ public class CommuteService {
 
     @Transactional
     public void saveCommuteHistory(Long employeeId) {
-        //1.직원정보를 가져온다
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(IllegalArgumentException::new);
+
         //오늘날에 출근을 했다면 에러를 던진다
         if (commuteHistoryRepository.existsByEmployeeAndDate(employee, LocalDate.now())) {
             throw new IllegalArgumentException(String.format("employee(%s)은(는) 이미 출근을 했습니다.", employee.getName()));
         }
-        //2.직원정보를 토대로 출근 이력을 저장한다
-        //commuteHistoryRepository.save(new CommuteHistory(employee));
+
         employee.arrive();
     }
 
     @Transactional
     public void updateCommuteHistory(Long employeeId) {
-        //1.직원정보를 가져온다.
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(IllegalArgumentException::new);
 
-        //2.직원 출근 이력을 가지고 온다
         CommuteHistory commuteHistory = commuteHistoryRepository.findByEmployeeAndDate(employee, LocalDate.now())
                 .orElseThrow(IllegalArgumentException::new);
 
-        //3.만약 퇴근 이력이 있다면 예외를 던진다
+        //만약 퇴근 이력이 있다면 예외를 던진다
         if (commuteHistory.leavingTime() != null) {
             throw new IllegalArgumentException("퇴근 상태입니다. 출근을 먼저 해주세요.");
         }
 
-        //4.퇴근 이력을 현재 시간으로 넣어준다
-        //commuteHistoryRepository.save(commuteHistory);
         commuteHistory.registerLeavingTime(LocalTime.now());
     }
 
@@ -71,7 +66,8 @@ public class CommuteService {
         LocalDate endOfMonth = yearMonth.atEndOfMonth();
 
         //2.요청한 년월에 해당하는 해당 직원의 근무이력들을 가져온다.
-        List<CommuteHistory> historiesOfMonth = commuteHistoryRepository.findByEmployeeAndDateBetween(employee, firstOfMonth, endOfMonth);
+        List<CommuteHistory> historiesOfMonth = commuteHistoryRepository
+                .findByEmployeeAndDateBetween(employee, firstOfMonth, endOfMonth);
 
         //3.근무이력들에서 date를 가져와 리스트에 담는다.
         //4.근무일에서 퇴근 시간과 출근 시간의 차이를 분으로 환산한다.

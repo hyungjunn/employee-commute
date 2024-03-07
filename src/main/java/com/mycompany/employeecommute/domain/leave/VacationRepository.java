@@ -1,4 +1,4 @@
-package com.mycompany.employeecommute.domain.vacation;
+package com.mycompany.employeecommute.domain.leave;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

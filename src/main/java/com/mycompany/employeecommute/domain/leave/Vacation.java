@@ -1,4 +1,4 @@
-package com.mycompany.employeecommute.domain.vacation;
+package com.mycompany.employeecommute.domain.leave;
 
 import com.mycompany.employeecommute.domain.employee.Employee;
 import jakarta.persistence.Column;
@@ -13,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
 
-import static com.mycompany.employeecommute.domain.vacation.VacationType.*;
+import static com.mycompany.employeecommute.domain.leave.VacationType.ANNUAL_LEAVE;
 
 @Entity
 public class Vacation {
@@ -23,7 +23,7 @@ public class Vacation {
     private Long id = null;
 
     @ManyToOne
-    @JoinColumn(name = "employee_id", nullable = false)
+    @JoinColumn(nullable = false)
     private Employee employee;
 
     @Column(nullable = false)

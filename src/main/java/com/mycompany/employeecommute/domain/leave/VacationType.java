@@ -1,4 +1,4 @@
-package com.mycompany.employeecommute.domain.vacation;
+package com.mycompany.employeecommute.domain.leave;
 
 /**
  * 참고: https://flex.team/blog/2021/12/02/legal-leave/

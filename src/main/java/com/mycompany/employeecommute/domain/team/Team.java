@@ -47,4 +47,9 @@ public class Team {
     public int getMember_Count() {
         return member_Count;
     }
+
+    public int getVacationRegistrationCriteria() {
+        return vacationRegistrationCriteria;
+    }
+
 }

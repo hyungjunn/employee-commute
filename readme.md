@@ -184,6 +184,12 @@
 
 ### 연차 등록 api
 - HTTP Method: POST
-- HTTP path: /vacation/annual
+- HTTP path: /leave/annual
 - HTTP body (JSON)
 - 결과 반환 X (HTTP status 200 ok)
+
+### 남은 연차 조회 api
+- HTTP Method: GET
+- HTTP path: /leave/annual
+- 쿼리: employeeId
+- 결과 반환 (JSON)

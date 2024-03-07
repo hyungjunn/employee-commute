@@ -1,7 +1,7 @@
 package com.mycompany.employeecommute.domain.employee;
 
 import com.mycompany.employeecommute.domain.commute.history.CommuteHistory;
-import com.mycompany.employeecommute.domain.vacation.Vacation;
+import com.mycompany.employeecommute.domain.leave.Vacation;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +27,7 @@ public class Employee {
     private List<CommuteHistory> commuteHistories = new ArrayList<>();
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<Vacation> vacations = new ArrayList<>();
+    private List<Vacation> leaves = new ArrayList<>();
 
     @Column(nullable = false)
     private String name;
@@ -84,7 +84,7 @@ public class Employee {
     }
 
     public void registerAnnualLeave(LocalDate date) {
-        this.vacations.add(new Vacation(this, date));
+        this.leaves.add(new Vacation(this, date));
     }
 
 }
