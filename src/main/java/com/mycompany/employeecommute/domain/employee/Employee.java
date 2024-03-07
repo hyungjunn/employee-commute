@@ -80,7 +80,6 @@ public class Employee {
         return workStartDate;
     }
 
-    //todo: 이 연관관계를 통한 메서드가 왜 적용이 안되는지
     public void arrive() {
         this.commuteHistories.add(new CommuteHistory(this));
     }

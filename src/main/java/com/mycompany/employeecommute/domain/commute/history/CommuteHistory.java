@@ -37,8 +37,16 @@ public class CommuteHistory {
         return id;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
     public LocalTime leavingTime() {
         return leavingTime;
+    }
+
+    public LocalTime arrivingTime() {
+        return arrivingTime;
     }
 
     public void registerLeavingTime(LocalTime leavingTime) {
