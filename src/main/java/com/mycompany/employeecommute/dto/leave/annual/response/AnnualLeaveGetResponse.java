@@ -1,13 +1,15 @@
 package com.mycompany.employeecommute.dto.leave.annual.response;
 
+import com.mycompany.employeecommute.domain.vacation.Vacation;
+
 import java.time.LocalDate;
 
 public class AnnualLeaveGetResponse {
 
     private LocalDate date;
 
-    public AnnualLeaveGetResponse(LocalDate date) {
-        this.date = date;
+    public AnnualLeaveGetResponse(Vacation vacation) {
+        this.date = vacation.getDate();
     }
 
     public LocalDate getDate() {

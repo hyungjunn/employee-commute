@@ -1,7 +1,7 @@
 package com.mycompany.employeecommute.domain.employee;
 
 import com.mycompany.employeecommute.domain.commute.history.CommuteHistory;
-import com.mycompany.employeecommute.domain.leave.Vacation;
+import com.mycompany.employeecommute.domain.vacation.Vacation;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,6 +16,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.mycompany.employeecommute.domain.vacation.policy.annual_leave.AnnualLeavePolicy.ANNUAL_LEAVE;
+import static com.mycompany.employeecommute.domain.vacation.policy.annual_leave.AnnualLeavePolicy.HIRED_THIS_YEAR_ANNUAL_LEAVE;
+
 @Entity
 public class Employee {
 
@@ -27,7 +30,7 @@ public class Employee {
     private List<CommuteHistory> commuteHistories = new ArrayList<>();
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
-    private List<Vacation> leaves = new ArrayList<>();
+    private List<Vacation> vacations = new ArrayList<>();
 
     @Column(nullable = false)
     private String name;
@@ -84,7 +87,28 @@ public class Employee {
     }
 
     public void registerAnnualLeave(LocalDate date) {
-        this.leaves.add(new Vacation(this, date));
+        if (isNotSatisfiedHiredThisYearCondition()) {
+            throw new IllegalArgumentException("올해 등록할 수 있는 연차를 모두 사용하셨습니다.");
+        }
+
+        if (isNotSatisfiedHiredNotThisYearCondition()) {
+            throw new IllegalArgumentException("올해 등록할 수 있는 연차를 모두 사용하셨습니다.");
+        }
+        this.vacations.add(new Vacation(this, date));
     }
+
+    private boolean isNotSatisfiedHiredThisYearCondition() {
+        return hasHiredThisYear() && this.vacations.size() >= HIRED_THIS_YEAR_ANNUAL_LEAVE.getDays();
+    }
+
+    private boolean hasHiredThisYear() {
+        return this.workStartDate.getYear() == LocalDate.now().getYear();
+    }
+
+    private boolean isNotSatisfiedHiredNotThisYearCondition() {
+        return !hasHiredThisYear() && this.vacations.size() >= ANNUAL_LEAVE.getDays();
+    }
+
+
 
 }

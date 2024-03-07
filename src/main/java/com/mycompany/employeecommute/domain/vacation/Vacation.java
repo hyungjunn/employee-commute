@@ -1,4 +1,4 @@
-package com.mycompany.employeecommute.domain.leave;
+package com.mycompany.employeecommute.domain.vacation;
 
 import com.mycompany.employeecommute.domain.employee.Employee;
 import jakarta.persistence.Column;
@@ -13,7 +13,7 @@ import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
 
-import static com.mycompany.employeecommute.domain.leave.VacationType.ANNUAL_LEAVE;
+import static com.mycompany.employeecommute.domain.vacation.VacationType.ANNUAL_LEAVE;
 
 @Entity
 public class Vacation {
@@ -41,4 +41,7 @@ public class Vacation {
         this.date = date;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
 }
