@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 @Entity
 public class Team {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = null;
@@ -17,6 +16,8 @@ public class Team {
     private String name;
     private String manager;
     private int member_Count;
+
+    private int vacationRegistrationCriteria;
 
     protected Team() {
 

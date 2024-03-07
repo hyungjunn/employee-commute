@@ -1,6 +1,7 @@
 package com.mycompany.employeecommute.domain.employee;
 
 import com.mycompany.employeecommute.domain.commute.history.CommuteHistory;
+import com.mycompany.employeecommute.domain.vacation.Vacation;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +25,9 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CommuteHistory> commuteHistories = new ArrayList<>();
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Vacation> vacations = new ArrayList<>();
 
     @Column(nullable = false)
     private String name;
@@ -56,10 +59,6 @@ public class Employee {
         this.workStartDate = workStartDate;
     }
 
-    public Long getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
@@ -82,6 +81,10 @@ public class Employee {
 
     public void arrive() {
         this.commuteHistories.add(new CommuteHistory(this));
+    }
+
+    public void registerAnnualLeave(LocalDate date) {
+        this.vacations.add(new Vacation(this, date));
     }
 
 }
