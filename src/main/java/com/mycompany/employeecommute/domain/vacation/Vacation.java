@@ -44,4 +44,5 @@ public class Vacation {
     public LocalDate getDate() {
         return date;
     }
+
 }

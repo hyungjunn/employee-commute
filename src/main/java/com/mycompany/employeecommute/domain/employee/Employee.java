@@ -109,6 +109,4 @@ public class Employee {
         return !hasHiredThisYear() && this.vacations.size() >= ANNUAL_LEAVE.getDays();
     }
 
-
-
 }

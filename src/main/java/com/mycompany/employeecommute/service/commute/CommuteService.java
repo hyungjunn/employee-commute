@@ -82,8 +82,19 @@ public class CommuteService {
 
     private static List<Detail> getDetails(List<CommuteHistory> historiesOfMonth) {
         return historiesOfMonth.stream()
-                .map(history -> new Detail(history.getDate(), Duration.between(history.arrivingTime(), history.leavingTime()).toMinutes()))
+                .map(CommuteService::applyHistoryDetail)
                 .toList();
+    }
+
+    private static Detail applyHistoryDetail(CommuteHistory history) {
+        // 연차를 쓴 날에는 근무시간을 0, usingDayOff를 true로 반환한다.
+        // todo: 연차를 쓴 날을 표현하는 방법이 맞는지 고민해볼 것
+        if (history.leavingTime() == null) {
+            return new Detail(history.getDate(), 0, true);
+        }
+        return new Detail(history.getDate(),
+                Duration.between(history.arrivingTime(), history.leavingTime()).toMinutes(),
+                false);
     }
 
     private static long getSum(List<Detail> details) {
