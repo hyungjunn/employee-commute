@@ -62,33 +62,15 @@ public class CommuteService {
         LocalDate endOfMonth = yearMonth.atEndOfMonth();
 
         //요청한 년월(yearMonth)에 해당하는 해당 직원의 근무이력들을 가져온다.
-        List<CommuteHistory> historiesOfMonth = commuteHistoryRepository
-                .findByEmployeeAndDateBetween(employee, firstOfMonth, endOfMonth);
+        CommuteHistories commuteHistories = new CommuteHistories(
+                commuteHistoryRepository.findByEmployeeAndDateBetween(employee, firstOfMonth, endOfMonth));
 
-        List<Detail> details = getDetails(historiesOfMonth); // todo: 퇴근을 안한 상태로 getCommuteMonthHistory를 호출하면 N.P.E가 발생한다.
+        // todo: 퇴근을 안한 상태로 getCommuteMonthHistory를 호출하면 N.P.E가 발생한다.
+        List<Detail> details = commuteHistories.getDetails();
 
         long sum = getSum(details);
 
         return new CommuteMonthHistoryResponse(details, sum);
-    }
-
-    private static List<Detail> getDetails(List<CommuteHistory> historiesOfMonth) {
-        return historiesOfMonth.stream()
-                .map(CommuteService::applyHistoryDetail)
-                .toList();
-    }
-
-    private static Detail applyHistoryDetail(CommuteHistory history) {
-        // 연차를 쓴 날에는 근무시간을 0, usingDayOff를 true로 반환한다.
-        // todo: 연차를 쓴 날을 표현하는 방법이 맞는지 고민해볼 것
-        if (history.leavingTime() == null) {
-            return new Detail(history.getDate(), 0, true);
-        }
-
-        //근무일에서 퇴근 시간과 출근 시간의 차이를 분으로 환산한다.
-        return new Detail(history.getDate(),
-                Duration.between(history.arrivingTime(), history.leavingTime()).toMinutes(),
-                false);
     }
 
     private static long getSum(List<Detail> details) {

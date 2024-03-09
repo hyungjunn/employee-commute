@@ -54,6 +54,7 @@ public class AnnualLeaveService {
     public List<AnnualLeaveGetResponse> getAnnualLeave(Long employeeId) {
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(IllegalArgumentException::new);
+
         return vacationRepository
                 .findByEmployeeAndDateGreaterThan(employee, LocalDate.now())
                 .stream()
