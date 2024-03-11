@@ -24,7 +24,7 @@ public class CommuteHistories {
     private Detail applyHistoryDetail(CommuteHistory history) {
         // 연차를 쓴 날에는 근무시간을 0, usingDayOff를 true로 반환한다.
         // todo: 연차를 쓴 날을 표현하는 방법이 맞는지 고민해볼 것
-        if (history.leavingTime() == null) {
+        if (history.leavingTime() == history.arrivingTime()) {
             return new Detail(history.getDate(), 0, true);
         }
 

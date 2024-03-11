@@ -63,7 +63,7 @@ public class AnnualLeaveService {
     }
 
     private static boolean isNotSatisfiedTeamAnnualRegisterCondition(LocalDate date, Team team) {
-        return DAYS.between(LocalDate.now(), date) < team.getVacationRegistrationCriteria();
+        return DAYS.between(LocalDate.now(), date) > team.getVacationRegistrationCriteria();
     }
 
 }

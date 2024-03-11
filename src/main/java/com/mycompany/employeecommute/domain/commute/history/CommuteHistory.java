@@ -1,6 +1,7 @@
 package com.mycompany.employeecommute.domain.commute.history;
 
 import com.mycompany.employeecommute.domain.employee.Employee;
+import com.mycompany.employeecommute.domain.vacation.Vacation;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,6 +32,13 @@ public class CommuteHistory {
         this.employee = employee;
         this.date = LocalDate.now();
         this.arrivingTime = LocalTime.now();
+    }
+
+    public CommuteHistory(Employee employee, LocalDate date) {
+        this.employee = employee;
+        this.date = date;
+        this.arrivingTime = LocalTime.ofSecondOfDay(0);
+        this.leavingTime = LocalTime.ofSecondOfDay(0);
     }
 
     public Long getId() {

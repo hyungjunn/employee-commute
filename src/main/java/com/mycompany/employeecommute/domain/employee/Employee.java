@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,6 +95,7 @@ public class Employee {
         if (isNotSatisfiedHiredNotThisYearCondition()) {
             throw new IllegalArgumentException("올해 등록할 수 있는 연차를 모두 사용하셨습니다.");
         }
+        this.commuteHistories.add(new CommuteHistory(this, date));
         this.vacations.add(new Vacation(this, date));
     }
 
