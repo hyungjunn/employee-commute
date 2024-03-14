@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 public class CommuteHistories {
 
     private final List<CommuteHistory> commuteHistoryList;
+    private static final long WORKING_TIME_WHEN_VACATION = 0;
+    private final static boolean USING_DAY_OFF = true;
 
     public CommuteHistories(List<CommuteHistory> commuteHistoryList) {
         this.commuteHistoryList = commuteHistoryList;
@@ -22,10 +24,8 @@ public class CommuteHistories {
     }
 
     private Detail applyHistoryDetail(CommuteHistory history) {
-        // 연차를 쓴 날에는 근무시간을 0, usingDayOff를 true로 반환한다.
-        // todo: 연차를 쓴 날을 표현하는 방법이 맞는지 고민해볼 것
         if (history.leavingTime() == history.arrivingTime()) {
-            return new Detail(history.getDate(), 0, true);
+            return new Detail(history.getDate(), WORKING_TIME_WHEN_VACATION, USING_DAY_OFF);
         }
 
         //근무일에서 퇴근 시간과 출근 시간의 차이를 분으로 환산한다.
