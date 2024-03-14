@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -64,5 +65,10 @@ public class CommuteHistory {
         return leavingTime() == arrivingTime();
     }
 
+    public long calculateDifferenceTwoTimes() {
+        return Duration.between(
+                this.arrivingTime(),
+                this.leavingTime()).toMinutes();
+    }
 
 }
