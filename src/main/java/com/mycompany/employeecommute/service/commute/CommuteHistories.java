@@ -24,13 +24,15 @@ public class CommuteHistories {
     }
 
     private Detail applyHistoryDetail(CommuteHistory history) {
-        if (history.leavingTime() == history.arrivingTime()) {
+        if (history.isVacationDay()) {
             return new Detail(history.getDate(), WORKING_TIME_WHEN_VACATION, USING_DAY_OFF);
         }
 
         //근무일에서 퇴근 시간과 출근 시간의 차이를 분으로 환산한다.
         return new Detail(history.getDate(),
-                Duration.between(history.arrivingTime(), history.leavingTime()).toMinutes(),
+                Duration.between(
+                        history.arrivingTime(),
+                        history.leavingTime()).toMinutes(),
                 false);
     }
 

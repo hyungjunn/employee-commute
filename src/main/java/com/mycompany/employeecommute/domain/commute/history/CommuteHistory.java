@@ -1,7 +1,6 @@
 package com.mycompany.employeecommute.domain.commute.history;
 
 import com.mycompany.employeecommute.domain.employee.Employee;
-import com.mycompany.employeecommute.domain.vacation.Vacation;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -60,5 +59,10 @@ public class CommuteHistory {
     public void registerLeavingTime(LocalTime leavingTime) {
         this.leavingTime = leavingTime;
     }
+
+    public boolean isVacationDay() {
+        return leavingTime() == arrivingTime();
+    }
+
 
 }

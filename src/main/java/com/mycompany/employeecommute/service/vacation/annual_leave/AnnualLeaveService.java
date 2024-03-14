@@ -4,7 +4,6 @@ import com.mycompany.employeecommute.domain.employee.Employee;
 import com.mycompany.employeecommute.domain.employee.EmployeeRepository;
 import com.mycompany.employeecommute.domain.team.Team;
 import com.mycompany.employeecommute.domain.team.TeamRepository;
-import com.mycompany.employeecommute.domain.vacation.Vacation;
 import com.mycompany.employeecommute.domain.vacation.VacationRepository;
 import com.mycompany.employeecommute.dto.leave.annual.response.AnnualLeaveGetResponse;
 import org.springframework.stereotype.Service;
