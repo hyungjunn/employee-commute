@@ -2,7 +2,7 @@ package com.mycompany.employeecommute.dto.leave.annual.request;
 
 public class AnnualLeaveGetRequest {
 
-    private Long employeeId;
+    private final Long employeeId;
 
     public AnnualLeaveGetRequest(Long employeeId) {
         this.employeeId = employeeId;

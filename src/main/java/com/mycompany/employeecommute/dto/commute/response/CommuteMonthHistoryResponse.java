@@ -4,8 +4,8 @@ import java.util.List;
 
 public class CommuteMonthHistoryResponse {
 
-    private List<Detail> detail;
-    private long sum;
+    private final List<Detail> detail;
+    private final long sum;
 
     public CommuteMonthHistoryResponse(List<Detail> detail, long sum) {
         this.detail = detail;

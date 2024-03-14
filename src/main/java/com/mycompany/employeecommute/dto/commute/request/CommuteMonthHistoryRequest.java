@@ -5,8 +5,8 @@ import java.time.YearMonth;
 
 public class CommuteMonthHistoryRequest {
 
-    private Long employeeId;
-    private YearMonth yearMonth;
+    private final Long employeeId;
+    private final YearMonth yearMonth;
 
     public CommuteMonthHistoryRequest(Long employeeId, YearMonth yearMonth) {
         this.employeeId = employeeId;

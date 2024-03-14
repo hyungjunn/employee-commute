@@ -38,7 +38,7 @@ public class AnnualLeaveService {
                 .orElseThrow(IllegalArgumentException::new);
 
         Team team = teamRepository.findByName(employee.getTeamName())
-                        .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(IllegalArgumentException::new);
 
         if (vacationRepository.existsByEmployeeAndDate(employee, date)) {
             throw new IllegalArgumentException("이미 등록하신 연차입니다.");

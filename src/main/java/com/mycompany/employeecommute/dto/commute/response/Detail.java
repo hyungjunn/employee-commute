@@ -4,9 +4,9 @@ import java.time.LocalDate;
 
 public class Detail {
 
-    private LocalDate date;
-    private long workingMinutes;
-    private boolean usingDayOff;
+    private final LocalDate date;
+    private final long workingMinutes;
+    private final boolean usingDayOff;
 
     public Detail(LocalDate date,
                   long workingMinutes,

@@ -9,7 +9,9 @@ import java.util.Optional;
 
 public interface CommuteHistoryRepository extends JpaRepository<CommuteHistory, Long> {
     Optional<CommuteHistory> findByEmployeeAndDate(Employee employee, LocalDate date);
+
     boolean existsByEmployeeAndDate(Employee employee, LocalDate date);
+
     List<CommuteHistory> findByEmployeeAndDateBetween(Employee employee, LocalDate firstDay, LocalDate endDay);
 
 }

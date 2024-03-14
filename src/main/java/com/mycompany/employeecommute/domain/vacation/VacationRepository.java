@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface VacationRepository extends JpaRepository<Vacation, Long> {
     boolean existsByEmployeeAndDate(Employee employee, LocalDate date);
+
     List<Vacation> findByEmployeeAndDateGreaterThan(Employee employee, LocalDate date);
 }

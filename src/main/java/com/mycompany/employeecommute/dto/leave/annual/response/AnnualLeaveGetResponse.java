@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class AnnualLeaveGetResponse {
 
-    private LocalDate date;
+    private final LocalDate date;
 
     public AnnualLeaveGetResponse(Vacation vacation) {
         this.date = vacation.getDate();

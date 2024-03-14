@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class CommuteHistories {
 
-    private List<CommuteHistory> commuteHistoryList;
+    private final List<CommuteHistory> commuteHistoryList;
 
     public CommuteHistories(List<CommuteHistory> commuteHistoryList) {
         this.commuteHistoryList = commuteHistoryList;
