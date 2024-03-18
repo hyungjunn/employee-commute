@@ -22,9 +22,10 @@ public class AnnualLeaveService {
     private final TeamRepository teamRepository;
     private final VacationRepository vacationRepository;
 
-    public AnnualLeaveService(EmployeeRepository employeeRepository,
-                              TeamRepository teamRepository,
-                              VacationRepository vacationRepository
+    public AnnualLeaveService(
+            EmployeeRepository employeeRepository,
+            TeamRepository teamRepository,
+            VacationRepository vacationRepository
     ) {
         this.employeeRepository = employeeRepository;
         this.teamRepository = teamRepository;

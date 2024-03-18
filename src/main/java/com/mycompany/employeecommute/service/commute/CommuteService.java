@@ -20,7 +20,10 @@ public class CommuteService {
     private final CommuteHistoryRepository commuteHistoryRepository;
     private final EmployeeRepository employeeRepository;
 
-    public CommuteService(CommuteHistoryRepository commuteHistoryRepository, EmployeeRepository employeeRepository) {
+    public CommuteService(
+            CommuteHistoryRepository commuteHistoryRepository,
+            EmployeeRepository employeeRepository
+    ) {
         this.commuteHistoryRepository = commuteHistoryRepository;
         this.employeeRepository = employeeRepository;
     }
@@ -31,7 +34,9 @@ public class CommuteService {
                 .orElseThrow(IllegalArgumentException::new);
 
         if (commuteHistoryRepository.existsByEmployeeAndDate(employee, LocalDate.now())) {
-            throw new IllegalArgumentException(String.format("employee(%s)은(는) 이미 출근을 했습니다.", employee.getName()));
+            throw new IllegalArgumentException(
+                    String.format("employee(%s)은(는) 이미 출근을 했습니다.", employee.getName())
+            );
         }
 
         employee.arrive();
@@ -42,7 +47,8 @@ public class CommuteService {
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(IllegalArgumentException::new);
 
-        CommuteHistory commuteHistory = commuteHistoryRepository.findByEmployeeAndDate(employee, LocalDate.now())
+        CommuteHistory commuteHistory = commuteHistoryRepository
+                .findByEmployeeAndDate(employee, LocalDate.now())
                 .orElseThrow(IllegalArgumentException::new);
 
         if (commuteHistory.leavingTime() != null) {
@@ -62,7 +68,8 @@ public class CommuteService {
 
         //요청한 년월(yearMonth)에 해당하는 해당 직원의 근무이력들을 가져온다.
         CommuteHistories commuteHistories = new CommuteHistories(
-                commuteHistoryRepository.findByEmployeeAndDateBetween(employee, firstOfMonth, endOfMonth));
+                commuteHistoryRepository.findByEmployeeAndDateBetween(employee, firstOfMonth, endOfMonth)
+        );
 
         // todo: 퇴근을 안한 상태로 getCommuteMonthHistory를 호출하면 N.P.E가 발생한다.
         List<Detail> details = commuteHistories.getDetails();
