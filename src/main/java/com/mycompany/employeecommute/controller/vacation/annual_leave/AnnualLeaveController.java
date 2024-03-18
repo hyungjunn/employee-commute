@@ -1,12 +1,12 @@
 package com.mycompany.employeecommute.controller.vacation.annual_leave;
 
-import com.mycompany.employeecommute.dto.leave.annual.request.AnnualLeaveGetRequest;
 import com.mycompany.employeecommute.dto.leave.annual.request.AnnualLeaveRegisterRequest;
 import com.mycompany.employeecommute.dto.leave.annual.response.AnnualLeaveGetResponse;
 import com.mycompany.employeecommute.service.vacation.annual_leave.AnnualLeaveService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,8 +26,8 @@ public class AnnualLeaveController {
     }
 
     @GetMapping("/leave/annual")
-    public List<AnnualLeaveGetResponse> getAnnualLeave(AnnualLeaveGetRequest request) {
-        return annualLeaveService.getAnnualLeave(request.getEmployeeId());
+    public List<AnnualLeaveGetResponse> getAnnualLeave(long employeeId) {
+        return annualLeaveService.getAnnualLeave(employeeId);
     }
 
 }
