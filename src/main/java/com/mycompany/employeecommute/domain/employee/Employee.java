@@ -51,15 +51,44 @@ public class Employee {
 
     }
 
-    public Employee(String name, Role role, LocalDate birthday, LocalDate workStartDate) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException(String.format("잘못된 name(%s)입니다. 다시 입력해주세요.", name));
+    public static class Builder {
+        private final String name;
+        private Role role;
+        private LocalDate birthday;
+        private LocalDate workStartDate;
+
+        public Builder(String name) {
+            if (name == null || name.isBlank()) {
+                throw new IllegalArgumentException(String.format("잘못된 name(%s)입니다. 다시 입력해주세요.", name));
+            }
+            this.name = name;
         }
 
-        this.name = name;
-        this.role = role;
-        this.birthday = birthday;
-        this.workStartDate = workStartDate;
+        public Builder role(Role role) {
+            this.role = role;
+            return this;
+        }
+
+        public Builder birthday(LocalDate birthday) {
+            this.birthday = birthday;
+            return this;
+        }
+
+        public Builder workStartDate(LocalDate workStartDate) {
+            this.workStartDate = workStartDate;
+            return this;
+        }
+
+        public Employee build() {
+            return new Employee(this);
+        }
+    }
+
+    private Employee(Builder builder) {
+        this.name = builder.name;
+        this.role = builder.role;
+        this.birthday = builder.birthday;
+        this.workStartDate = builder.workStartDate;
     }
 
     public String getName() {

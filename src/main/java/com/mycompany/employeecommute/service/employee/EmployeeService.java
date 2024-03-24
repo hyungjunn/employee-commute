@@ -21,13 +21,12 @@ public class EmployeeService {
 
     @Transactional
     public void saveEmployee(EmployeeSaveRequest request) {
-        employeeRepository.save(new Employee(
-                        request.getName(),
-                        request.getRole(),
-                        request.getWorkStartDate(),
-                        request.getBirthday()
-                )
-        );
+        employeeRepository.save(new Employee
+                        .Builder(request.getName())
+                        .role(request.getRole())
+                        .birthday(request.getBirthday())
+                        .workStartDate(request.getWorkStartDate())
+                        .build());
     }
 
     @Transactional
